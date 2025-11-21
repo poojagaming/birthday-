@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Deepu ❤️</title>
+<style>
+  body{margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#ffd6e0,#d6f7f7);
+  min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;}
+
+  .card{background:white;width:100%;max-width:860px;border-radius:18px;padding:20px;text-align:center;
+  box-shadow:0 12px 30px rgba(0,0,0,0.16);}
+
+  h1{margin:10px 0;color:#c71b57;font-weight:800;}
+  h1.big{font-size:50px;letter-spacing:4px;}
+  h1.small{font-size:28px;}
+
+  input{padding:12px;border-radius:10px;border:1px solid #ccc;width:210px;font-size:17px;}
+  button{padding:12px 20px;border:none;background:#c71b57;color:white;border-radius:10px;font-size:17px;
+  cursor:pointer;margin-top:12px;}
+
+  .page{display:none;}
+  .page.active{display:block;}
+
+  .photos{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:18px;}
+  .photoBox{width:260px;position:relative;border-radius:14px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.12);}
+  .photoBox img{width:100%;height:320px;object-fit:cover;}
+  .dob{position:absolute;top:10px;left:10px;background:rgba(0,0,0,0.6);color:white;padding:6px 10px;border-radius:8px;}
+
+  .iconWrap{display:flex;justify-content:center;gap:18px;margin-top:20px;}
+  .iconBtn{width:130px;height:130px;background:#ffe9f0;border-radius:16px;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.16);cursor:pointer;}
+
+  .iconBtn span{margin-top:10px;font-weight:700;color:#c71b57;}
+
+  .heartMsg{font-size:22px;color:#c71b57;font-weight:600;display:none;margin-top:16px;padding:16px;background:#fff1fa;border-radius:12px;}
+
+  .giftBox{font-size:55px;color:#c71b57;font-weight:900;}
+</style>
+</head>
+
+<body>
+<div class="card">
+
+  <!-- PAGE 1: PASSWORD -->
+  <div id="p1" class="page active">
+    <h1 class="small">Enter Password</h1>
+    <input id="pw" type="password" placeholder="Password">
+    <br>
+    <button onclick="checkPass()">Open</button>
+    <p style="margin-top:10px;color:#666;">Hint: APKAEXBF</p>
+  </div>
+
+  <!-- PAGE 1B: HAPPY BIRTHDAY -->
+  <div id="p1b" class="page">
+    <h1 class="big">HAPPY BIRTHDAY<br>DEEPU JI 🎉</h1>
+    <button onclick="go(2)">Start</button>
+  </div>
+
+  <!-- PAGE 2: 3 FIXED IMAGES -->
+  <div id="p2" class="page">
+    <h1 class="small">Your Beautiful Memories ❤️</h1>
+
+    <div class="photos">
+
+      <div class="photoBox">
+        <img src="img1.jpg">
+        <div class="dob">22 NOVEMBER 2004</div>
+      </div>
+
+      <div class="photoBox">
+        <img src="img2.jpg">
+        <div class="dob">22 NOVEMBER 2004</div>
+      </div>
+
+      <div class="photoBox">
+        <img src="img3.jpg">
+        <div class="dob">22 NOVEMBER 2004</div>
+      </div>
+
+    </div>
+
+    <button onclick="go(3)">Next</button>
+  </div>
+
+  <!-- PAGE 3: PLAY MUSIC + HEART MESSAGE -->
+  <div id="p3" class="page">
+    <h1 class="small">Make it Special 💖</h1>
+
+    <div class="iconWrap">
+
+      <div class="iconBtn" onclick="playSong()">
+        🎵  
+        <span>Play Song</span>
+      </div>
+
+      <div class="iconBtn" onclick="toggleHeart()">
+        ❤️
+        <span>Heart</span>
+      </div>
+
+    </div>
+
+    <div id="heartMsg" class="heartMsg">
+      Dinu ke dil ki ek chhoti si baat... ❤️<br><br>
+      "Tum meri zindagi ka vo haseen hissa ho jise main kabhi khona nahi chahta.
+      Tumhari muskaan mere din ko roshan kar deti hai, aur tumhara saath mere liye ek dua jaisa hai.
+      Shayad main perfect na hoon, par tumhare liye hamesha sachcha rahunga.
+      Bas ek mauka de do Deepu… tumhe itna pyar karunga ki tum khud kehogi — 'Dinu hi mera sab kuch hai.'"
+    </div>
+
+    <button onclick="go(4)" style="margin-top:22px;">Gift 🎁</button>
+  </div>
+
+  <!-- PAGE 4: FINAL GIFT -->
+  <div id="p4" class="page">
+    <h1 class="small">Your Gift 💝</h1>
+    <div class="giftBox">I HEAT YOU</div>
+    <br><br>
+    <button onclick="go(1)">Restart</button>
+  </div>
+
+  <audio id="bg" loop>
+    <source src="birthday.mp3" type="audio/mpeg">
+  </audio>
+
+</div>
+
+<script>
+function checkPass(){
+  if(document.getElementById("pw").value === "APKAEXBF"){
+    go(1.5);
+  } else alert("Wrong password");
+}
+
+function go(n){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+
+  if(n===1) document.getElementById("p1").classList.add("active");
+  if(n===1.5) document.getElementById("p1b").classList.add("active");
+  if(n===2) document.getElementById("p2").classList.add("active");
+  if(n===3) document.getElementById("p3").classList.add("active");
+  if(n===4) document.getElementById("p4").classList.add("active");
+}
+
+function playSong(){
+  document.getElementById("bg").play();
+}
+
+function toggleHeart(){
+  let h = document.getElementById("heartMsg");
+  h.style.display = (h.style.display==="block") ? "none" : "block";
+}
+</script>
+
+</body>
+</html>
